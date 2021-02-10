@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 Tjenare K1nan.
+=======
+hej hej 
+redegirarde av Kinan
+>>>>>>> 74fdb8ac82b83fb26db5a5546adbdedbf1710ea2
