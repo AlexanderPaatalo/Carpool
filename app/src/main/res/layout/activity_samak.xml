@@ -56,20 +56,6 @@
         tools:layout_editor_absoluteX="34dp"
         tools:layout_editor_absoluteY="-358dp" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="292dp"
-        android:layout_height="240dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizntal="true"
-        android:src="@drawable/ride_it"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.378"
-        tools:ignore="MissingConstraints" />
 
     <SearchView
         android:id="@+id/Search"
@@ -81,6 +67,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.093" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

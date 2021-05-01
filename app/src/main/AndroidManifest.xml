@@ -10,6 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Carpool">
+        <activity android:name=".samak"></activity>
+        <activity android:name=".sure" />
+        <activity android:name=".slutdestination" />
+        <activity android:name=".choose" />
+        <activity android:name=".chat" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
