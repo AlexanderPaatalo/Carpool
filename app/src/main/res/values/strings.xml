@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Carpool</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="permission_message">Are you sure you don\'t want to allow Carpool to use your device location?\n\nWithout it you won\'t be able to use the map part of the application.</string>
+    <string name="allow">Allow</string>
+    <string name="cancel">Cancel</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
