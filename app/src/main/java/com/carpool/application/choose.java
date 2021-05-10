@@ -14,13 +14,5 @@ public class choose extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
-
-        FloatingActionButton driverButton = (FloatingActionButton) findViewById(R.id.driverButton);
-        driverButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), samak.class));
-            }
-        });
     }
 }
