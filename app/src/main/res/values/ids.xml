@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="ethundredsure" type="id">hundredsure</item>
+    <item name="etFrom" type="id">from</item>
+    <item name="etTo" type="id">to</item>
+    <item name="etNumber" type="id">number</item>
+    <item name="etDepart" type="id">depart</item>
+</resources>
