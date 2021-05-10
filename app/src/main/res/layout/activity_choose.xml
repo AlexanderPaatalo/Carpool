@@ -15,7 +15,7 @@
         tools:layout_editor_absoluteY="27dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/driverButton"
         android:layout_width="93dp"
         android:layout_height="100dp"
         android:clickable="true"
@@ -28,6 +28,7 @@
         app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/passengerButton"
         android:layout_width="109dp"
         android:layout_height="93dp"
         android:clickable="true"

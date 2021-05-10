@@ -1,19 +1,20 @@
 package com.carpool.application
 
 import android.Manifest
-import android.content.Intent
+import android.content.ContentValues.TAG
 import android.content.IntentSender
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
-import android.view.View
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.common.api.ResolvableApiException
+import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.*
 import com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -22,11 +23,17 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.gms.tasks.Task
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
+
+    val apiKey = BuildConfig.MAPS_API_KEY
 
     private var LOCATION_REQUEST_CODE = 101
     private var lastLocation: Location? = null
@@ -36,7 +43,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private var latLng: LatLng = LatLng(-33.87, 151.21)
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
-    lateinit var sydneyMarker: Marker
+    private lateinit var sydneyMarker: Marker
     private lateinit var marker: Marker
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +55,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        places()
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         requestingLocationUpdates = true
@@ -91,13 +100,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 Log.d("MapsActivity", "askLocationPermission: you should show an alert dialog...")
                 ActivityCompat.requestPermissions(
                     this,
-                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                     LOCATION_REQUEST_CODE
                 )
             }else{
                 ActivityCompat.requestPermissions(
                     this,
-                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                     LOCATION_REQUEST_CODE
                 )
             }
@@ -159,7 +168,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             sydneyMarker = map.addMarker(markerOptions)
         }
 
-        marker = map.addMarker(MarkerOptions().position(LatLng(62.3932, 17.2831)))
+        // Car marker
+        val icon = BitmapDescriptorFactory.fromResource(R.drawable.car_placeholder)
+        val height = 100
+        val width = 100
+        val b = BitmapFactory.decodeResource(resources, R.drawable.car_placeholder)
+        val scaledIcon = Bitmap.createScaledBitmap(b, width, height, true)
+        val scaledMarkerIcon = BitmapDescriptorFactory.fromBitmap(scaledIcon)
+        val carMarkerLocation = LatLng(62.3932, 17.2831)
+        val markerOptions = MarkerOptions().position(carMarkerLocation)
+            .title("Driver location")
+            .snippet("snippet snippet snippet snippet snippet...")
+            .icon(scaledMarkerIcon)
+
+        marker = map.addMarker(markerOptions)
+
+
 
         // marker onclicklistener
     }
@@ -243,5 +267,36 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
+    }
+
+    private fun places(){
+        // Initialize the SDK
+        Places.initialize(applicationContext, apiKey)
+
+        // Create a new PlacesClient instance
+        val placesClient = Places.createClient(this)
+
+        // Initialize the AutocompleteSupportFragment.
+        val autocompleteFragment =
+            supportFragmentManager.findFragmentById(R.id.autocomplete_fragment)
+                    as AutocompleteSupportFragment
+
+        // Specify the types of place data to return.
+        autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
+
+        // Set up a PlaceSelectionListener to handle the response.
+        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+            override fun onPlaceSelected(place: Place) {
+                // TODO: Get info about the selected place.
+                Log.i(TAG, "Place: ${place.name}, ${place.id}")
+            }
+
+            override fun onError(status: Status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: $status")
+            }
+        })
+
+
     }
 }
