@@ -66,8 +66,10 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_view"
+        android:name="com.carpool.application.ActionButtons"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.carpool.application.ActionButtons" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="45dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
