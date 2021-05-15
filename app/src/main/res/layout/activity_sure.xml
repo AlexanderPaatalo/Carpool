@@ -7,67 +7,88 @@
     tools:context=".slutdestination">
 
     <TextView
-        android:id="@id/ethundredsure"
-        android:layout_width="274dp"
-        android:layout_height="39dp"
-        android:hint="Är du säker att du vill samåka ?"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/text_rideConfirmationTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/title_ride_confirmation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@id/etFrom"
-        android:layout_width="274dp"
-        android:layout_height="39dp"
-        android:hint="Från "
-        app:layout_constraintBottom_toBottomOf="parent"
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintTop_toBottomOf="@id/text_rideConfirmationTitle">
 
-    <TextView
-        android:id="@id/etTo"
-        android:layout_width="274dp"
-        android:layout_height="39dp"
-        android:hint="Till"
+        <TextView
+            android:id="@+id/text_rideConfirmationFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/from"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        android:inputType="time"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.182" />
+        <TextView
+            android:id="@+id/text_rideConfirmationFromInput"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/text_rideConfirmationFrom"
+            android:layout_alignBaseline="@id/text_rideConfirmationFrom"/>
+
+        <TextView
+            android:id="@+id/text_rideConfirmationTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/text_rideConfirmationToInput"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/text_rideConfirmationTo"
+            android:layout_alignBaseline="@id/text_rideConfirmationTo"/>
+
+        <TextView
+            android:id="@+id/text_rideConfirmationVacancies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vacancies"
+            android:layout_marginTop="60dp"/>
+
+        <TextView
+            android:id="@+id/text_rideConfirmationVacanciesInput"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/text_rideConfirmationVacancies"
+            android:layout_alignBaseline="@id/text_rideConfirmationVacancies"/>
+
+        <TextView
+            android:id="@+id/text_rideConfirmationDeparture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/departure"
+            android:layout_marginTop="90dp"/>
+
+        <TextView
+            android:id="@+id/text_rideConfirmationDepartureInput"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/text_rideConfirmationDeparture"
+            android:layout_alignBaseline="@id/text_rideConfirmationDeparture"/>
 
 
-    <TextView
-        android:id="@id/etNumber"
-        android:layout_width="274dp"
-        android:layout_height="39dp"
-        android:hint="Antal platser : "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.238" />
-
-    <TextView
-        android:id="@id/etDepart"
-        android:layout_width="274dp"
-        android:layout_height="39dp"
-        android:hint="Avgång : "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.294" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/drive"
@@ -93,48 +114,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.603" />
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
-        android:layout_width="wrap_content"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/action_buttons"
+        android:name="com.carpool.application.ActionButtons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:contentDescription="TODO"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.971"
-        app:srcCompat="@android:drawable/stat_notify_chat" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton3"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
-        android:clickable="true"
-        android:contentDescription="TODO"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton2"
-        app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toEndOf="@+id/floatingActionButton4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.967"
-        app:srcCompat="@android:drawable/ic_menu_add" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:contentDescription="TODO"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/floatingActionButton2"
-        app:layout_constraintHorizontal_bias="0.108"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.971"
-        app:srcCompat="@android:drawable/ic_menu_mapmode" />
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,33 @@
 <resources>
     <string name="app_name">Carpool</string>
     <string name="title_activity_maps">Map</string>
+    <!-- Permission dialog -->
     <string name="permission_message">Are you sure you don\'t want to allow Carpool to use your device location?\n\nWithout it you won\'t be able to use the map part of the application.</string>
     <string name="allow">Allow</string>
     <string name="cancel">Cancel</string>
+    <!-- LocationInfoWindow -->
+    <string name="destination">Destination: &#032;</string>
+    <string name="vacancies">Lediga platser: &#032;</string>
+    <string name="departure">Avgång: &#032;</string>
+    <string name="pick_date">Välj tid</string>
+    <string name="start_ride">Börja åka</string>
+    <!-- Ride confirmation -->
+    <string name="title_ride_confirmation">Är du säker på att du vill skapa en resa?</string>
+    <string name="from">Från:</string>
+    <string name="to">Till:</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="vacancies_selection">
+        <item>1 Plats</item>
+        <item>2 Platser</item>
+        <item>3 Platser</item>
+        <item>4 Platser</item>
+        <item>5 Platser</item>
+        <item>6 Platser</item>
+        <item>7 Platser</item>
+        <item>8 Platser</item>
+    </string-array>
+
 </resources>

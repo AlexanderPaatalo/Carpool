@@ -26,11 +26,17 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container_view"
+        android:id="@+id/action_buttons"
         android:name="com.carpool.application.ActionButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <androidx.fragment.app.FragmentContainerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/places_info_window"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
