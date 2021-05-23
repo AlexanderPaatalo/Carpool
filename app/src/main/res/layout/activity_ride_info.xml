@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RideInfoActivity">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/button_call_driver"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/phone_button"
+        android:layout_marginTop="100dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ride_info_text_box"
+        app:srcCompat="@android:drawable/stat_sys_phone_call"
+        android:scaleType="fitCenter"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/button_location"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/location_button"
+        android:layout_marginTop="200dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ride_info_text_box"
+        app:srcCompat="@drawable/location_marker_white"
+        android:scaleType="fitCenter"/>
+
+    <RelativeLayout
+        android:id="@+id/ride_info_text_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/ride_info_text_driver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/driver" />
+
+        <TextView
+            android:id="@+id/ride_info_text_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ride_info_text_driver"
+            android:text="@string/from" />
+
+        <TextView
+            android:id="@+id/ride_info_text_destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ride_info_text_from"
+            android:text="@string/destination" />
+
+        <TextView
+            android:id="@+id/ride_info_text_vacancies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ride_info_text_destination"
+            android:text="@string/vacancies" />
+
+        <TextView
+            android:id="@+id/ride_info_text_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ride_info_text_vacancies"
+            android:text="@string/date" />
+
+        <TextView
+            android:id="@+id/ride_info_text_departure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ride_info_text_date"
+            android:text="@string/departure" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

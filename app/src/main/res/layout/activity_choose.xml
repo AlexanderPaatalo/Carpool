@@ -5,14 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00ffffff"
-    tools:context=".choose">
+    tools:context=".ChooseUserModeActivity">
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView3"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/title_use_as"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="108dp"
+        android:layout_height="33dp"
+        android:text="     Passagerare"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.811"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.471"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:layout_width="108dp"
+        android:layout_height="33dp"
+        android:text="     Förare"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.471"
+        tools:ignore="HardcodedText" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:name="com.carpool.application.ActionButtons"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="27dp" />
+        tools:layout_editor_absoluteY="45dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/driverButton"
@@ -25,7 +64,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.329"
-        app:srcCompat="@android:drawable/ic_menu_myplaces" />
+        app:srcCompat="@android:drawable/ic_menu_myplaces"
+        android:contentDescription="@string/fab_driver" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/passengerButton"
@@ -38,38 +78,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.329"
-        app:srcCompat="@android:drawable/ic_menu_myplaces" />
-
-    <TextView
-        android:layout_width="108dp"
-        android:layout_height="33dp"
-        android:text="     Passagerare"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.811"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.471" />
-
-    <TextView
-        android:layout_width="108dp"
-        android:layout_height="33dp"
-        android:text="     Förare"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.471" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container_view"
-        android:name="com.carpool.application.ActionButtons"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="45dp" />
+        app:srcCompat="@android:drawable/ic_menu_myplaces"
+        android:contentDescription="@string/fab_passenger" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

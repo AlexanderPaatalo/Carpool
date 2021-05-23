@@ -1,0 +1,62 @@
+<!-- res/layout/example_activity.xml -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/location_info_window"
+    android:name="com.carpool.LocationInfoWindowFragment"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_gravity="bottom"
+    android:clickable="true"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_top"/>
+
+    <RelativeLayout
+        android:id="@+id/location_info_window_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+
+        <TextView
+            android:id="@+id/text_location_info_window_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/from" />
+
+        <TextView
+            android:id="@+id/text_location_info_window_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to"
+            android:layout_below="@id/text_location_info_window_from" />
+
+        <TextView
+            android:id="@+id/text_location_info_window_vacancies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vacancies"
+            android:layout_below="@id/text_location_info_window_to"/>
+
+        <TextView
+            android:id="@+id/text_location_info_window_departure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/departure"
+            android:layout_below="@id/text_location_info_window_vacancies" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_carpool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/carpool"
+        android:layout_gravity="end|bottom"/>
+
+</FrameLayout>

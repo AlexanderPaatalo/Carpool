@@ -1,117 +1,180 @@
 package com.carpool.application
 
-import android.app.TimePickerDialog
-import android.content.Intent
-import android.icu.text.SimpleDateFormat
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
-
+import com.carpool.application.RideManager.Companion.rides
 import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [LocationInfoWindow.newInstance] factory method to
- * create an instance of this fragment.
- */
-
-// Information window fragment that pops up when a user searches for a place.
+// Information window fragment that pops up when a user searches for a place or clicks on a ride marker.
 class LocationInfoWindow() : Fragment() {
-
-    constructor(destination: String) : this(){
+    constructor(id: UUID? = null, location: Location? = null, destination: String? = null, currentAddress: String? = null) : this(){
+        this.id = id
+        this.location = location
         this.destination = destination
+        this.currentAddress = currentAddress
     }
 
-    // TODO: Rename and change types of parameters
-    private lateinit var destination: String
-
-        override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private var destination: String? = null
+    private var currentAddress: String? = null
+    private var location: Location? = null
+    private var id: UUID? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view: View = inflater.inflate(R.layout.fragment_location_info_window, container, false)
+    ): View {
 
-        val destinationTextView = view.findViewById(R.id.text_destination) as TextView
-        val departure = view.findViewById<View>(R.id.departure_time) as TextView
-        val buttonChooseTime = view.findViewById<View>(R.id.button_chooseTime) as Button
-        val vacancies = view.findViewById<View>(R.id.vacancies_selection) as Spinner
+        val view: View
 
-        // Adds text to the destination field
-        destinationTextView?.append(" $destination")
+        // Use different view depending on if user searched for a place or clicked on a ride marker.
+        return when(MapsActivity.windowToShow) {
+            0 -> {
+                view= inflater.inflate(R.layout.fragment_location_info_window_ride_new, container, false)
+                showNewRideWindow(view)
+                view
+            }
+            else -> {
+                view = inflater.inflate(R.layout.fragment_location_info_window_ride_info, container, false)
+                showRideInfoWindow(view)
+                view
+            }
+        }
+    }
 
-        val spinner: Spinner = view.findViewById(R.id.vacancies_selection)
+    // Shows the info window to create a new ride.
+    private fun showNewRideWindow(view: View) {
+        val tvDestination: TextView = view.findViewById(R.id.text_location_info_window_destination_input)
+        // Set text to destination searched for
+        tvDestination.text = destination
+
+        // Spinner input field
+        val vacanciesSpinner: Spinner = view.findViewById(R.id.vacancies_selection)
         // Create an ArrayAdapter using the string array and a default spinner layout
         context?.let {
             ArrayAdapter.createFromResource(
                 it,
                 R.array.vacancies_selection,
-                android.R.layout.simple_spinner_item
+                R.layout.spinner_item
             ).also { adapter ->
                 // Specify the layout to use when the list of choices appears
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 // Apply the adapter to the spinner
-                spinner.adapter = adapter
+                vacanciesSpinner.adapter = adapter
             }
         }
 
-        buttonChooseTime.setOnClickListener(View.OnClickListener {
-            TimePickerFragment().showTimePicker(departure, requireContext(), buttonChooseTime)
-        })
+        // Departure text-field. OnClickListener creates a TimePickerFragment and sets the text of text-field to the selected time.
+        val departure: TextView = view.findViewById(R.id.departure_time)
+        departure.setOnClickListener {
+            TimePickerFragment().showTimePicker(requireContext(), departure)
+        }
 
-        val startRideButton = view.findViewById<View>(R.id.button_startRide) as Button
-        startRideButton.setOnClickListener(View.OnClickListener {
+        // Choose time button. OnClickListener creates a TimePickerFragment and sets the text of text-field to the selected time.
+        val buttonChooseTime: Button = view.findViewById(R.id.button_choose_time)
+        buttonChooseTime.setOnClickListener {
+            TimePickerFragment().showTimePicker(requireContext(), departure)
+        }
 
-            val intent = Intent(context, sure::class.java)
-            intent.putExtra("DESTINATION", destination)
-            intent.putExtra("VACANCIES", vacancies.selectedItem.toString())
-            intent.putExtra("DEPARTURE_TIME", departure.text)
+        // Create ride button. OnClickListener takes entered information and passes to next activity.
+        val buttonCreateRide: Button = view.findViewById(R.id.button_create_ride)
+        buttonCreateRide.setOnClickListener {
+            val intent = ActivityManager.passRideInfo(
+                context,
+                "CreateRideConfirmationActivity",
+                location,
+                currentAddress,
+                destination,
+                vacanciesSpinner.selectedItem.toString(),
+                departure.text.toString()
+            )
+            // Remove marker from map before starting activity.
+            MapsActivity.placeMarker?.remove()
             startActivity(intent)
-        })
-
-        return view
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LocationInfoWindow.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LocationInfoWindow().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    // Show the info window for the ride.
+    private fun showRideInfoWindow(view: View) {
+        var ride: Ride? = null
+
+        // Get the associated ride id.
+        for (r in rides) {
+            if (this.id == r.getId()) {
+                ride = r
             }
-    }
+        }
 
-    // Adds text to the
-    private fun addText(destination: String?){
+        // Populate information window if ride is found.
+        if(ride != null) {
+            val currentAddress = ride.getCurrentAddress()
+            val destination = ride.getDestination()
+            val vacancies = ride.getVacancies()
+            val departure = ride.getDeparture()
 
-        //vacanciesText?.append(" 4")
-        //departureText?.append(" 14:00")
+            val relativeLayout: RelativeLayout = view.findViewById(R.id.location_info_window_content)
+            val button: Button = view.findViewById(R.id.button_carpool)
+
+            // Create new text views to the right of existing text views.
+            for (i in 1..4) {
+                val textView = TextView (context)
+
+                textView.id = View.generateViewId()
+
+                val layout = RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT
+                )
+
+                // Sets unique attributes
+                when(i) {
+                    1 -> {
+                        textView.text = currentAddress
+                        // Add rules to layout
+                        layout.addRule(RelativeLayout.ALIGN_BASELINE, R.id.text_location_info_window_from)
+                        layout.addRule(RelativeLayout.END_OF, R.id.text_location_info_window_from)
+                    }
+                    2 -> {
+                        textView.text = destination
+                        // Add rules to layout
+                        layout.addRule(RelativeLayout.ALIGN_BASELINE, R.id.text_location_info_window_to)
+                        layout.addRule(RelativeLayout.END_OF, R.id.text_location_info_window_to)
+                    }
+                    3 -> {
+                        textView.text = vacancies
+                        // Add rules to layout
+                        layout.addRule(RelativeLayout.ALIGN_BASELINE, R.id.text_location_info_window_vacancies)
+                        layout.addRule(RelativeLayout.END_OF, R.id.text_location_info_window_vacancies)
+                    }
+                    4 -> {
+                        textView.text = departure
+                        // Add rules to layout
+                        layout.addRule(RelativeLayout.ALIGN_BASELINE, R.id.text_location_info_window_departure)
+                        layout.addRule(RelativeLayout.END_OF, R.id.text_location_info_window_departure)
+                    }
+                }
+                // Set layout and add view to relativeLayout.
+                textView.layoutParams = layout
+                relativeLayout.addView(textView)
+            }
+            // Create OnClickListener that passes ride information to next activity.
+            button.setOnClickListener {
+                val intent = ActivityManager.passRideInfo(
+                    requireContext(),
+                    "RideInfoActivity",
+                    ride.getLocation(),
+                    currentAddress,
+                    destination,
+                    vacancies,
+                    departure
+                )
+                startActivity(intent)
+            }
+        }
     }
 }

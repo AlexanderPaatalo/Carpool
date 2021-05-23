@@ -10,20 +10,16 @@
     android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_top"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp">
-
-        <Spinner
-            android:id="@+id/vacancies_selection"
-            android:layout_width="match_parent"
-            android:layout_height="19dp"
-            android:layout_marginStart="90dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/text_destination"
@@ -34,31 +30,42 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/text_location_info_window_destination_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/text_destination"
+            app:layout_constraintTop_toTopOf="@id/text_destination" />
+
+        <TextView
             android:id="@+id/text_vacancies"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:text="@string/vacancies"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/text_destination"/>
+
+        <Spinner
+            android:id="@+id/vacancies_selection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/text_vacancies"
+            app:layout_constraintTop_toTopOf="@id/text_vacancies" />
 
         <TextView
             android:id="@+id/text_departure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:text="@string/departure"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/text_vacancies" />
 
         <TextView
             android:id="@+id/departure_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text=""
+            android:text="@string/default_time"
             app:layout_constraintStart_toEndOf="@id/text_departure"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/text_departure" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -70,23 +77,23 @@
         android:focusableInTouchMode="false" >
 
         <Button
-            android:id="@+id/button_startRide"
+            android:id="@+id/button_create_ride"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/start_ride"
+            android:text="@string/create"
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:layout_marginStart="10dp"/>
 
         <Button
-            android:id="@+id/button_chooseTime"
+            android:id="@+id/button_choose_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pick_date"
+            android:text="@string/pick_time"
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/button_startRide"/>
+            android:layout_toEndOf="@id/button_create_ride"/>
 
     </RelativeLayout>
 </FrameLayout>

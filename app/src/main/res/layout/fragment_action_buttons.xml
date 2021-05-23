@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/action_buttons"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:clickable="true"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/fab_chat_activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.881"
@@ -23,10 +24,11 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton3"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:clickable="true"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/fab_user_mode_activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButton2"
         app:layout_constraintHorizontal_bias="0.523"
@@ -39,8 +41,9 @@
         android:id="@+id/floatingActionButton4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:clickable="true"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/fab_maps_activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/floatingActionButton2"
         app:layout_constraintHorizontal_bias="0.108"
@@ -48,12 +51,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.971"
         app:srcCompat="@android:drawable/ic_menu_mapmode" />
-
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="-358dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

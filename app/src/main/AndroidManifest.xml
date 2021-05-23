@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.carpool.application">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
@@ -10,17 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Carpool">
-        <activity android:name=".PasssengerChoice"></activity>
-        <activity android:name=".PassengerChoice" />
-        <activity android:name=".empty" />
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
+        <activity android:name=".RideCreatedActivity" />
+        <activity android:name=".CreateRideActivity" />
+        <activity android:name=".RideInfoActivity" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".RidesActivity"
+            android:label="@string/title_activity_rides"
+            android:theme="@style/Theme.Carpool.NoActionBar" />
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps">
@@ -30,26 +32,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".samak" />
-        <activity android:name=".sure" />
-        <activity android:name=".slutdestination" />
-        <activity android:name=".choose" /> <!-- android:theme="@style/Theme.Transparent" -->
-        <activity android:name=".ChatActivity" />
-        <activity android:name=".MainActivity" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
 
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <activity android:name=".CreateRideConfirmationActivity" />
+        <activity android:name=".ChooseUserModeActivity" />
+        <activity android:name=".ChatActivity" /> <!-- android:theme="@style/Theme.Transparent" -->
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
 
         <service
             android:name=".MapsActivity"
             android:foregroundServiceType="location" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 </manifest>

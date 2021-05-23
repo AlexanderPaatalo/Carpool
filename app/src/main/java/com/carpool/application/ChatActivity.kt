@@ -1,9 +1,9 @@
-package com.carpool.application;
+package com.carpool.application
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 
-import android.os.Bundle;
-
+// Activity for the chat
 class ChatActivity : AppCompatActivity() {
 
     @Override
