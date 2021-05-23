@@ -32,9 +32,12 @@
     <!-- RideCreatedActivity -->
     <string name="title_ride_created">Du har nu lagt upp din färd och kommer att få en notifikation när någon vill samåka med dig!</string>
     <!-- RidesActivity -->
+    <string name="title_book_ride_confirm">Är du säker på att du vill boka samåkningen?</string>
+    <!-- RidesActivity -->
     <string name="title_activity_rides">Tillgängliga resor</string>
     <string name="carpool">Samåk</string>
     <!-- Ride information -->
+    <string name="title_ride_info">Information om resan</string>
     <string name="driver">Förare: \u0020</string>
     <string name="date">Datum: \u0020</string>
     <!-- Login -->

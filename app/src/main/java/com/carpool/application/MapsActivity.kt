@@ -182,6 +182,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 val latLng = LatLng(location.latitude, location.longitude)
                 if (latLng == marker.position) {
                     val id = ride.getId()
+                    trackLocation = false
                     windowToShow = 1
                     showLocationInfoWindow(id, null, null)
                 }
@@ -478,13 +479,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val ride1Location = locationFinder(this, "Dalgatan 14, 852 37 Sundsvall")
             val ride2Location = locationFinder(this, "Stockholm Centralstation, 111 20 Stockholm")
             val ride3Location = locationFinder(this, "UNIVERSITETSTORGET 4, 907 36 Umeå")
+            val ride4Location = locationFinder(this, "Storgården 56, 586 44 Linköping")
+            val ride5Location = locationFinder(this, "Alvägen 2, Säter")
 
             val ride1 = ride1Location?.let { Ride(it, "Dalgatan 14, 852 37 Sundsvall", "Stockholm", "1 Plats", "12:00") }
             val ride2 = ride2Location?.let { Ride(it,"Stockholm Centralstation, 111 20 Stockholm", "Sundsvall", "2 Platser", "13:00") }
             val ride3 = ride3Location?.let { Ride(it,"UNIVERSITETSTORGET 4, 907 36 Umeå", "Sundsvall", "3 Platser", "14:00") }
+            val ride4 = ride4Location?.let { Ride(it,"Storgården 56, 586 44 Linköping", "Borlänge", "5 Platser", "21:00") }
+            val ride5 = ride5Location?.let { Ride(it,"Alvägen 2, Säter", "Leksand", "7 Platser", "23:00") }
             rides.add(ride1!!)
             rides.add(ride2!!)
             rides.add(ride3!!)
+            rides.add(ride4!!)
+            rides.add(ride5!!)
         }
     }
 }

@@ -166,7 +166,7 @@ class LocationInfoWindow() : Fragment() {
             button.setOnClickListener {
                 val intent = ActivityManager.passRideInfo(
                     requireContext(),
-                    "RideInfoActivity",
+                    "BookRideConfirmationActivity",
                     ride.getLocation(),
                     currentAddress,
                     destination,

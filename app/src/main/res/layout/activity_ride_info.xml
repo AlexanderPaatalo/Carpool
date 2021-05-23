@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".RideInfoActivity">
 
+    <TextView
+        android:id="@+id/title_ride_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/title_ride_info"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/button_call_driver"
         android:layout_width="72dp"
@@ -43,23 +55,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!--
         <TextView
             android:id="@+id/ride_info_text_driver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/driver" />
+            -->
 
         <TextView
             android:id="@+id/ride_info_text_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ride_info_text_driver"
             android:text="@string/from" />
 
         <TextView
             android:id="@+id/ride_info_text_destination"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
             android:layout_below="@id/ride_info_text_from"
             android:text="@string/destination" />
 
@@ -67,22 +81,35 @@
             android:id="@+id/ride_info_text_vacancies"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
             android:layout_below="@id/ride_info_text_destination"
             android:text="@string/vacancies" />
 
+        <!--
         <TextView
             android:id="@+id/ride_info_text_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
             android:layout_below="@id/ride_info_text_vacancies"
             android:text="@string/date" />
+            -->
 
         <TextView
             android:id="@+id/ride_info_text_departure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ride_info_text_date"
+            android:paddingTop="10dp"
+            android:layout_below="@id/ride_info_text_vacancies"
             android:text="@string/departure" />
     </RelativeLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:name="com.carpool.application.ActionButtons"
+        android:id="@+id/action_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

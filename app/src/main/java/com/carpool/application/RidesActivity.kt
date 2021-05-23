@@ -128,7 +128,7 @@ class RidesActivity : AppCompatActivity() {
                 button.setOnClickListener {
                     val intent = ActivityManager.passRideInfo(
                         this,
-                        "RideInfoActivity",
+                        "BookRideConfirmationActivity",
                         location,
                         currentAddress,
                         destination,
