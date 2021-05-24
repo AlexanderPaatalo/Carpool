@@ -42,7 +42,7 @@ class BookRideConfirmationActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             } else {
-                Toast.makeText(this, "Please make sure fields are valid.", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Something went wrong...", Toast.LENGTH_SHORT)
                     .show()
             }
         }
