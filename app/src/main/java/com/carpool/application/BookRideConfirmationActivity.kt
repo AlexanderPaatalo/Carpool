@@ -1,12 +1,11 @@
 package com.carpool.application
 
-import android.content.Intent
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.carpool.application.ActivityManager.Companion.passRideInfo
 
 class BookRideConfirmationActivity : AppCompatActivity() {
@@ -14,14 +13,14 @@ class BookRideConfirmationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_ride_confirmation)
 
-        // Text views for the information entered by the user.
+        // Text views for the ride information
         val fromView: TextView = findViewById(R.id.text_book_ride_confirmation_from_input)
         val toView: TextView = findViewById(R.id.text_ride_confirmation_to_input)
         val vacanciesView: TextView = findViewById(R.id.text_ride_confirmation_vacancies_input)
         val departureView: TextView = findViewById(R.id.text_ride_confirmation_departure_input)
 
         // Buttons
-        val buttonCreateRide: Button = findViewById(R.id.button_book_ride)
+        val buttonBookRide: Button = findViewById(R.id.button_book_ride)
         val buttonCancel: Button = findViewById(R.id.button_cancel)
 
         val location = intent.extras?.getParcelable<Location>("LOCATION")
@@ -36,8 +35,8 @@ class BookRideConfirmationActivity : AppCompatActivity() {
         vacanciesView.text = vacancies
         departureView.text = departure
 
-        // Creates a ride based on valid information entered if user clicks the button.
-        buttonCreateRide.setOnClickListener {
+        // Books the ride based on the information in the text views.
+        buttonBookRide.setOnClickListener {
             if (location != null && currentAddress != null && destination != null && vacancies != null && departure != null) {
                 intent = passRideInfo(this, "RideInfoActivity", location, currentAddress, destination, vacancies, departure)
                 startActivity(intent)
