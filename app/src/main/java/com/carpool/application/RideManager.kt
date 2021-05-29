@@ -11,14 +11,16 @@ class RideManager {
     companion object {
         var rides = mutableListOf<Ride>()
 
-        fun locationFinder(context: Context, currentAddress: String): Location? {
+        // Tries to find a location for the address given as an argument.
+        // Returns either the address if successful or null.
+        fun locationFinder(context: Context, address: String): Location? {
             // Get location from address
             val addresses: List<Address>
             val geocoder = Geocoder(context)
             val location = Location("")
 
             try {
-                addresses = geocoder.getFromLocationName(currentAddress, 4)
+                addresses = geocoder.getFromLocationName(address, 4)
                 if (addresses == null) {
                     Toast.makeText(context, "Couldn't get the location.", Toast.LENGTH_SHORT).show()
                 }
